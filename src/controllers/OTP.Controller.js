@@ -42,16 +42,17 @@ router.post("/", async (req, res) => {
 /* verify OTP */
 router.post("/verify", async (req, res) => {
   const ClientRes = req.body.OTP;
+  let myuser
   if (!ClientRes) return res.status(404).json({ message: "no otp found" });
   const name = (Math.random() + 1).toString(36).substring(7);
   if (+ClientRes === Bucket[0]) {
-    const myuser = await User.create({
+     myuser = await User.create({
       name: name,
       phone: phone[phone.length - 1],
     });
     return res.send({ message: "Verification Passed", user: myuser });
   } else {
-    return res.send({ message: "Not Matched" });
+    return res.send({ message: "Not Matched", user: myuser });
   }
 });
 
