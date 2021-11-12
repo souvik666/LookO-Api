@@ -7,6 +7,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/otp", OTP);
 app.use("/user", usercontroller);
+app.use("/profile", express.static("upload/images"));
 
 app.listen(2345, async (req, res) => {
   Connect();
