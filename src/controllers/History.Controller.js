@@ -27,4 +27,13 @@ router.post("/", async (req, res) => {
   return res.json(newEntry);
 });
 
+router.get("/", async (req, res) => {
+  return res.json(await History.find());
+});
+
+router.get("/:id", async (req, res) => {
+  const fetchHistory = await History.find({ user: req.body.id });
+  res.send({ fetchHistory });
+});
+
 module.exports = router;
