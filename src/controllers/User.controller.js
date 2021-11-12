@@ -27,4 +27,16 @@ router.post("/", upload.single("avatar"), async function (req, res, next) {
   res.send(newEntry);
 });
 
+router.patch("/:id", upload.single("avatar"), async function (req, res, next) {
+  const proImg = req.file.filename;
+  const whoHeis = await User.findByIdAndUpdate(req.params.id, {
+    name: req.body.name,
+    phone: req.body.phone,
+    email: req.body.email,
+    image: proImg,
+    gender: req.body.gender,
+  });
+  const whoishenow = await User.findById(req.params.id);
+  res.send({ whoishenow });
+});
 module.exports = router;
