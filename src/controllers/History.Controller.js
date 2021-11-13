@@ -3,7 +3,6 @@ const base64ToImage = require("base64-to-image");
 const History = require("../models/History");
 const router = express.Router();
 var crypto = require("crypto");
-const path = require("path");
 
 const Base64Toimg = (str) => {
   const filename = crypto.randomBytes(10).toString("hex");
